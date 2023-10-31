@@ -17,6 +17,7 @@ export default {
         present: "#b59f3b",
         correct: "#538d4e",
         absent: "#3a3a3c",
+        inserting: "#565758",
       },
     },
   },
