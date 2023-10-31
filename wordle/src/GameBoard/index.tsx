@@ -1,18 +1,16 @@
-import { useState } from "react";
-
 import CharRow from "./CharRow";
 
 const GameBoard = () => {
   const ANSWER: string = "GRAIL";
 
-  const [inputWords, setInputWords] = useState([
-    "fsdls".toUpperCase(),
+  const inputWords = [
+    "Billy".toUpperCase(),
+    "Grace".toUpperCase(),
+    "Trail".toUpperCase(),
+    "GRAIL".toUpperCase(),
+    "g".toUpperCase(),
     "".toUpperCase(),
-    "".toUpperCase(),
-    "".toUpperCase(),
-    "".toUpperCase(),
-    "".toUpperCase(),
-  ]);
+  ];
 
   return (
     <main className="mx-auto flex w-full flex-row justify-center pt-14 text-center">
