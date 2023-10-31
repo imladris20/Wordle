@@ -27,23 +27,31 @@ const CharRow = ({ word, answer }: CharRowProps) => {
     answerArray.push(answer[i]);
   }
 
-  return rowArray.map((char, index, wholeWord) => {
+  return rowArray.map((char, index, arr) => {
     let state: string = "";
+    let isEmpty = false;
+    let isIncomplete = false;
 
-    if (char === " ") {
+    if (arr.includes(" ")) {
+      isIncomplete = true;
       state = charStates.inserting;
-    } else if (char === answerArray[index]) {
-      state = charStates.correct;
-    } else if (answerArray.includes(char)) {
-      state = charStates.present;
-    } else {
-      state = charStates.absent;
     }
 
-    if (wholeWord.every((char) => char === " ")) {
+    if (arr.every((char) => char === " ")) {
+      isEmpty = true;
       state = charStates.initial;
-    } else if (wholeWord.includes(" ")) {
-      state = charStates.inserting;
+    }
+
+    if (!isEmpty && !isIncomplete) {
+      state = charStates.absent;
+
+      if (answerArray.includes(char)) {
+        state = charStates.present;
+      }
+
+      if (char === answerArray[index]) {
+        state = charStates.correct;
+      }
     }
 
     return (
