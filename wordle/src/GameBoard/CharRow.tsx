@@ -30,7 +30,7 @@ const CharRow = ({ word, answer }: CharRowProps) => {
 
   return (
     <>
-      {rowArray.map((char, index) => {
+      {rowArray.map((char, index, wholeWord) => {
         let state: string = "";
 
         if (char === " ") {
@@ -41,6 +41,12 @@ const CharRow = ({ word, answer }: CharRowProps) => {
           state = charStates.present;
         } else {
           state = charStates.absent;
+        }
+
+        if (wholeWord.every((char) => char === " ")) {
+          state = "";
+        } else if (wholeWord.includes(" ")) {
+          state = charStates.inserting;
         }
 
         return (
