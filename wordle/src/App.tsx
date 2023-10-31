@@ -4,8 +4,10 @@ import Header from "./Headers";
 function App() {
   return (
     <>
-      <Header></Header>
-      <GameBoard></GameBoard>
+      <div className="h-screen bg-[#121213]">
+        <Header></Header>
+        <GameBoard></GameBoard>
+      </div>
     </>
   );
 }

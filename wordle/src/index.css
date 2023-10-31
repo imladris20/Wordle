@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  height: 100vh;
+.gridstyle {
+  @apply flex items-center justify-center rounded-md border-2 border-solid border-gray-300 font-sans text-4xl font-semibold text-white;
 }
 
-.gridstyle {
-  @apply flex h-16 w-16 items-center justify-center rounded-md border-2 border-solid border-gray-300 font-sans text-4xl font-semibold;
+#root {
+  height: 100vh;
 }
