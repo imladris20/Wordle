@@ -15,6 +15,8 @@ interface CharRowProps {
   answer: string;
 }
 
+const uniquePrefix = uuidv4();
+
 const CharRow = ({ word, answer }: CharRowProps) => {
   const rowArray = [];
   const answerArray: string[] = [];
@@ -50,7 +52,10 @@ const CharRow = ({ word, answer }: CharRowProps) => {
         }
 
         return (
-          <div className={`${gridtemplate} ${state}`} key={uuidv4()}>
+          <div
+            className={`${gridtemplate} ${state}`}
+            key={`${uniquePrefix}-${index}`}
+          >
             {char}
           </div>
         );
