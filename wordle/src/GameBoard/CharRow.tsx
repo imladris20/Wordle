@@ -7,7 +7,7 @@ const charStates = {
   absent: "border-none bg-absent",
   present: "border-none bg-present",
   correct: "border-correct bg-correct",
-  inserting: "border-inserting",
+  inserting: "border-inserting bg-transparent",
 };
 
 interface CharRowProps {
