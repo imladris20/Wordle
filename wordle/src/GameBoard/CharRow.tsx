@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 const gridtemplate =
   "border-absent flex items-center justify-center rounded-md border-2 border-solid font-sans text-4xl font-semibold text-white";
 
@@ -14,8 +12,6 @@ interface CharRowProps {
   word: string;
   answer: string;
 }
-
-const uniquePrefix = uuidv4();
 
 const CharRow = ({ word, answer }: CharRowProps) => {
   const rowArray = [];
@@ -50,10 +46,7 @@ const CharRow = ({ word, answer }: CharRowProps) => {
     }
 
     return (
-      <div
-        className={`${gridtemplate} ${state}`}
-        key={`${uniquePrefix}-${index}`}
-      >
+      <div className={`${gridtemplate} ${state}`} key={index}>
         {char}
       </div>
     );
