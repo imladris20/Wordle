@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { useEffect } from "react";
 
 import CharRow from "./CharRow";
 
@@ -14,17 +13,6 @@ const GameBoard = () => {
     "".toUpperCase(),
     "".toUpperCase(),
   ]);
-
-  /*   useEffect(() => {
-    setInputWords([
-      "dlksj".toUpperCase(),
-      "wa".toUpperCase(),
-      "".toUpperCase(),
-      "".toUpperCase(),
-      "".toUpperCase(),
-      "".toUpperCase(),
-    ]);
-  }, []); */
 
   return (
     <main className="mx-auto flex w-full flex-row justify-center pt-14 text-center">
