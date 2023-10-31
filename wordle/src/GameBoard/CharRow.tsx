@@ -1,10 +1,11 @@
 const gridtemplate =
-  "border-absent flex items-center justify-center rounded-md border-2 border-solid font-sans text-4xl font-semibold text-white";
+  "flex items-center justify-center rounded-md border-2 border-solid font-sans text-4xl font-semibold text-white";
 
 const charStates = {
+  initial: "border-absent bg-transparent",
   absent: "border-none bg-absent",
   present: "border-none bg-present",
-  correct: "border-correct bg-correct",
+  correct: "border-none bg-correct",
   inserting: "border-inserting bg-transparent",
 };
 
@@ -40,7 +41,7 @@ const CharRow = ({ word, answer }: CharRowProps) => {
     }
 
     if (wholeWord.every((char) => char === " ")) {
-      state = "";
+      state = charStates.initial;
     } else if (wholeWord.includes(" ")) {
       state = charStates.inserting;
     }

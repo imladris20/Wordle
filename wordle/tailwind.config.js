@@ -18,6 +18,7 @@ export default {
         correct: "#538d4e",
         absent: "#3a3a3c",
         inserting: "#565758",
+        dark: "#121213",
       },
     },
   },
