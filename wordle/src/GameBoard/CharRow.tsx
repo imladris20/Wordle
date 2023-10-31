@@ -30,38 +30,34 @@ const CharRow = ({ word, answer }: CharRowProps) => {
     answerArray.push(answer[i]);
   }
 
-  return (
-    <>
-      {rowArray.map((char, index, wholeWord) => {
-        let state: string = "";
+  return rowArray.map((char, index, wholeWord) => {
+    let state: string = "";
 
-        if (char === " ") {
-          state = charStates.inserting;
-        } else if (char === answerArray[index]) {
-          state = charStates.correct;
-        } else if (answerArray.includes(char)) {
-          state = charStates.present;
-        } else {
-          state = charStates.absent;
-        }
+    if (char === " ") {
+      state = charStates.inserting;
+    } else if (char === answerArray[index]) {
+      state = charStates.correct;
+    } else if (answerArray.includes(char)) {
+      state = charStates.present;
+    } else {
+      state = charStates.absent;
+    }
 
-        if (wholeWord.every((char) => char === " ")) {
-          state = "";
-        } else if (wholeWord.includes(" ")) {
-          state = charStates.inserting;
-        }
+    if (wholeWord.every((char) => char === " ")) {
+      state = "";
+    } else if (wholeWord.includes(" ")) {
+      state = charStates.inserting;
+    }
 
-        return (
-          <div
-            className={`${gridtemplate} ${state}`}
-            key={`${uniquePrefix}-${index}`}
-          >
-            {char}
-          </div>
-        );
-      })}
-    </>
-  );
+    return (
+      <div
+        className={`${gridtemplate} ${state}`}
+        key={`${uniquePrefix}-${index}`}
+      >
+        {char}
+      </div>
+    );
+  });
 };
 
 export default CharRow;
