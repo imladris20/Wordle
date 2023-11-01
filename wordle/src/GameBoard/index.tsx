@@ -39,7 +39,7 @@ const GameBoard = () => {
           className="h-10 w-40 rounded-md bg-gray-300 p-1 text-xs"
           onClick={getRandomAnswer}
         >
-          Give me new answer!
+          Play another question!
         </button>
       </div>
     </>
