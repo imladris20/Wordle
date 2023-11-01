@@ -8,6 +8,7 @@ export const initialState = {
   userInput: "",
   completeRows: [...Array(6).fill(false)],
   inputWords: [...Array(6).fill("")],
+  currentRow: 0,
 };
 
 //  定義ACTIONS變數來去核對要dispach的動作會比較方便管理，也比較不會出錯而找不到問題在哪裡
@@ -22,19 +23,25 @@ export const ACTIONS = {
 const WordleReducer = (state: any, action: any) => {
   const { type, payload } = action;
 
+  const { userInput, inputWords, currentRow, completeRows } = state;
+
   switch (type) {
     case ACTIONS.INPUT_CHAR:
-      if (state.userInput.length < 5) {
-        const newInputWords = [...state.inputWords];
-        const newUserInput = state.userInput + payload.char.toUpperCase();
-        newInputWords[payload.rowIndex] = newUserInput;
+      if (userInput.length < 5) {
+        const newInputWords = [...inputWords];
+        const newUserInput = userInput + payload.char.toUpperCase();
+        newInputWords[currentRow] = newUserInput;
+        console.log("new InputWords: ", newInputWords);
+        console.log("new UserInput:", newUserInput);
         return {
           ...state,
           userInput: newUserInput,
           inputWords: newInputWords,
         };
+      } else {
+        console.log("activate because of maxletters: ", state);
+        return state;
       }
-      return state;
     case ACTIONS.CLICK:
       console.log(payload.clickMessage);
       return state;
@@ -44,16 +51,20 @@ const WordleReducer = (state: any, action: any) => {
         answer: payload.newAnswer,
       };
     case ACTIONS.SUBMIT_ROW:
-      const newCompleteRows = [...state.completeRows];
-      newCompleteRows[payload.rowIndex] = true;
+      const newCompleteRows = [...completeRows];
+      newCompleteRows[currentRow] = true;
+      console.log("current inserting row: ", currentRow);
+      const newCurrentRow = currentRow + 1;
       return {
         ...state,
         completeRows: newCompleteRows,
+        currentRow: newCurrentRow,
+        userInput: "",
       };
     case ACTIONS.DELETE_CHAR:
-      const newInputWords = [...state.inputWords];
-      const newUserInput = state.userInput.slice(0, -1);
-      newInputWords[payload.rowIndex] = newUserInput;
+      const newInputWords = [...inputWords];
+      const newUserInput = userInput.slice(0, -1);
+      newInputWords[currentRow] = newUserInput;
       return {
         ...state,
         userInput: newUserInput,

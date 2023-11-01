@@ -18,7 +18,7 @@ export const WordStatesProvider = (props: any) => {
         console.log("You press enter");
         dispatch({
           type: ACTIONS.SUBMIT_ROW,
-          payload: { rowIndex: 0 },
+          payload: {},
         });
       }
 
@@ -26,14 +26,14 @@ export const WordStatesProvider = (props: any) => {
         console.log("You press backspace");
         dispatch({
           type: ACTIONS.DELETE_CHAR,
-          payload: { rowIndex: 0 },
+          payload: {},
         });
       }
 
       if (/^[A-Za-z]$/.test(e.key)) {
         dispatch({
           type: ACTIONS.INPUT_CHAR,
-          payload: { char: e.key, rowIndex: 0 },
+          payload: { char: e.key },
         });
       }
     };
