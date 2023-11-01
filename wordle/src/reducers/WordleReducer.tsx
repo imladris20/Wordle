@@ -23,11 +23,11 @@ export const ACTIONS = {
 const WordleReducer = (state: any, action: any) => {
   const { type, payload } = action;
 
-  const { userInput, inputWords, currentRow, completeRows } = state;
+  const { userInput, inputWords, currentRow, completeRows, isGameOver } = state;
 
   switch (type) {
     case ACTIONS.INPUT_CHAR:
-      if (userInput.length < 5 && currentRow < 6) {
+      if (userInput.length < 5 && currentRow < 6 && !isGameOver) {
         const newInputWords = [...inputWords];
         const newUserInput = userInput + payload.char.toUpperCase();
         newInputWords[currentRow] = newUserInput;
@@ -55,6 +55,7 @@ const WordleReducer = (state: any, action: any) => {
             completeRows: newCompleteRows,
             currentRow: newCurrentRow,
             userInput: "",
+            isGameOver: inputWords[currentRow] === answer,
           };
         }
       }
