@@ -1,10 +1,11 @@
 const gridtemplate =
-  "border-absent flex items-center justify-center rounded-md border-2 border-solid font-sans text-4xl font-semibold text-white";
+  "flex items-center justify-center rounded-md border-2 border-solid font-sans text-4xl font-semibold text-white";
 
 const charStates = {
+  initial: "border-absent bg-transparent",
   absent: "border-none bg-absent",
   present: "border-none bg-present",
-  correct: "border-correct bg-correct",
+  correct: "border-none bg-correct",
   inserting: "border-inserting bg-transparent",
 };
 
@@ -26,23 +27,31 @@ const CharRow = ({ word, answer }: CharRowProps) => {
     answerArray.push(answer[i]);
   }
 
-  return rowArray.map((char, index, wholeWord) => {
+  return rowArray.map((char, index, arr) => {
     let state: string = "";
+    let isEmpty = false;
+    let isIncomplete = false;
 
-    if (char === " ") {
+    if (arr.includes(" ")) {
+      isIncomplete = true;
       state = charStates.inserting;
-    } else if (char === answerArray[index]) {
-      state = charStates.correct;
-    } else if (answerArray.includes(char)) {
-      state = charStates.present;
-    } else {
-      state = charStates.absent;
     }
 
-    if (wholeWord.every((char) => char === " ")) {
-      state = "";
-    } else if (wholeWord.includes(" ")) {
-      state = charStates.inserting;
+    if (arr.every((char) => char === " ")) {
+      isEmpty = true;
+      state = charStates.initial;
+    }
+
+    if (!isEmpty && !isIncomplete) {
+      state = charStates.absent;
+
+      if (answerArray.includes(char)) {
+        state = charStates.present;
+      }
+
+      if (char === answerArray[index]) {
+        state = charStates.correct;
+      }
     }
 
     return (
