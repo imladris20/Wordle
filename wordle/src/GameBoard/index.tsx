@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import WordStatesContext from "../context/WordStatesContext.jsx";
 import CharRow from "./CharRow";
 interface GameBoardProps {
@@ -10,8 +10,14 @@ interface GameBoardProps {
 }
 
 const GameBoard = () => {
-  const { inputWords, handleClick, getRandomAnswer, answer }: GameBoardProps =
+  const { inputWords, getRandomAnswer, answer }: GameBoardProps =
     useContext(WordStatesContext);
+
+  let [isAnswerShow, setIsAnswerShow] = useState(false);
+
+  const handleShowAnswer = () => {
+    setIsAnswerShow(!isAnswerShow);
+  };
 
   return (
     <>
@@ -20,20 +26,14 @@ const GameBoard = () => {
           {inputWords.map((_, index) => {
             return <CharRow rowIndex={index} key={index} />;
           })}
-          {/* <CharRow word={inputWords[0]} answer={answer} key="1" />
-          <CharRow word={inputWords[1]} answer={answer} key="2" />
-          <CharRow word={inputWords[2]} answer={answer} key="3" />
-          <CharRow word={inputWords[3]} answer={answer} key="4" />
-          <CharRow word={inputWords[4]} answer={answer} key="5" />
-          <CharRow word={inputWords[5]} answer={answer} key="6" /> */}
         </div>
       </main>
       <div className="mx-auto my-10 flex w-[400px] flex-row items-center justify-center gap-20 text-center">
         <button
           className="h-10 w-40 rounded-md bg-gray-300 p-1 pl-3 text-left text-xs"
-          onClick={handleClick}
+          onClick={handleShowAnswer}
         >
-          Current Answer: {answer}
+          {!isAnswerShow ? "Click me to see answer!" : `Answer: ${answer}`}
         </button>
         <button
           className="h-10 w-40 rounded-md bg-gray-300 p-1 text-xs"

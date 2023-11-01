@@ -12,10 +12,7 @@ export const WordStatesProvider = (props: any) => {
 
   useEffect(() => {
     const handleKeyPress = (e: any) => {
-      console.log(e.key);
-
       if (e.key === "Enter") {
-        console.log("You press enter");
         dispatch({
           type: ACTIONS.SUBMIT_ROW,
           payload: {},
@@ -23,7 +20,6 @@ export const WordStatesProvider = (props: any) => {
       }
 
       if (e.key === "Backspace") {
-        console.log("You press backspace");
         dispatch({
           type: ACTIONS.DELETE_CHAR,
           payload: {},
@@ -45,16 +41,6 @@ export const WordStatesProvider = (props: any) => {
     };
   }, []);
 
-  const handleClick = (e: any) => {
-    e.preventDefault();
-    dispatch({
-      type: ACTIONS.CLICK,
-      payload: {
-        clickMessage: "I click, I do.",
-      },
-    });
-  };
-
   const getRandomAnswer = () => {
     const randomIndex = Math.floor(Math.random() * WordList.length);
     const newAnswer = WordList[randomIndex].toUpperCase();
@@ -65,7 +51,6 @@ export const WordStatesProvider = (props: any) => {
   };
 
   const value = {
-    handleClick,
     getRandomAnswer,
     inputWords: state.inputWords,
     answer: state.answer,
