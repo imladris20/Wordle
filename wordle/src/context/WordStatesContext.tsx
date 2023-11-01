@@ -10,32 +10,30 @@ const WordStatesContext: any = createContext(initialState);
 export const WordStatesProvider = (props: any) => {
   const [state, dispatch] = useReducer(WordleReducer, initialState);
 
-  const addCharToState = (char: any) => {
-    state.userInput = state.userInput + char;
-    const newState = {
-      ...state,
-      inputWords: [...state.inputWords],
-    };
-    newState.inputWords[0] = state.userInput.toUpperCase();
-    return newState;
-  };
-
   useEffect(() => {
     const handleKeyPress = (e: any) => {
       console.log(e.key);
 
       if (e.key === "Enter") {
         console.log("You press enter");
+        dispatch({
+          type: ACTIONS.SUBMIT_ROW,
+          payload: { rowIndex: 0 },
+        });
       }
 
       if (e.key === "Backspace") {
         console.log("You press backspace");
+        dispatch({
+          type: ACTIONS.DELETE_CHAR,
+          payload: { rowIndex: 0 },
+        });
       }
 
       if (/^[A-Za-z]$/.test(e.key)) {
         dispatch({
           type: ACTIONS.INPUT_CHAR,
-          payload: addCharToState(e.key),
+          payload: { char: e.key, rowIndex: 0 },
         });
       }
     };
@@ -62,14 +60,7 @@ export const WordStatesProvider = (props: any) => {
     const newAnswer = WordList[randomIndex].toUpperCase();
     dispatch({
       type: ACTIONS.NEW_ANSWER,
-      payload: {
-        wordState: {
-          answer: newAnswer,
-          userInput: "",
-          completeRows: [...Array(6).fill(false)],
-          inputWords: [...Array(6).fill("")],
-        },
-      },
+      payload: { newAnswer },
     });
   };
 

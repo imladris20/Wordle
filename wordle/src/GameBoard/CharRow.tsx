@@ -35,34 +35,34 @@ const CharRow = ({ rowIndex }: { rowIndex: number }) => {
   }
 
   return rowArray.map((char, index, arr) => {
-    let state: string = "";
+    let styleState: string = "";
     let isEmpty = false;
     let isIncomplete = false;
 
     if (arr.includes(" ") || !completeRows[rowIndex]) {
       isIncomplete = true;
-      state = charStates.inserting;
+      styleState = charStates.inserting;
     }
 
     if (arr.every((char) => char === " ")) {
       isEmpty = true;
-      state = charStates.initial;
+      styleState = charStates.initial;
     }
 
     if (!isEmpty && !isIncomplete) {
-      state = charStates.absent;
+      styleState = charStates.absent;
 
       if (answerArray.includes(char)) {
-        state = charStates.present;
+        styleState = charStates.present;
       }
 
       if (char === answerArray[index]) {
-        state = charStates.correct;
+        styleState = charStates.correct;
       }
     }
 
     return (
-      <div className={`${gridtemplate} ${state}`} key={index}>
+      <div className={`${gridtemplate} ${styleState}`} key={index}>
         {char}
       </div>
     );
