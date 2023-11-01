@@ -5,19 +5,14 @@ const answer = WordList[randomIndex].toUpperCase();
 
 export const initialState = {
   answer: answer,
-  inputWords: [
-    "Billy".toUpperCase(),
-    "Grace".toUpperCase(),
-    "Trail".toUpperCase(),
-    answer.toUpperCase(),
-    "dsf".toUpperCase(),
-    "".toUpperCase(),
-  ],
+  userInput: "",
+  completeRows: [...Array(6).fill(false)],
+  inputWords: [...Array(6).fill("")],
 };
 
 //  定義ACTIONS變數來去核對要dispach的動作會比較方便管理，也比較不會出錯而找不到問題在哪裡
 export const ACTIONS = {
-  CHANGE_INPUT: "CHANGE_INPUT",
+  INPUT_CHAR: "INPUT_CHAR",
   SUBMIT_ANSWER: "SUBMIT_ANSWER",
   CLICK: "CLICK",
   NEW_ANSWER: "NEW_ANSWER",
@@ -31,12 +26,8 @@ const WordleReducer = (state: any, action: any) => {
   console.log("payload in reducer: ", payload);
 
   switch (type) {
-    case ACTIONS.CHANGE_INPUT:
-      return {
-        ...state,
-        inputWords: payload.inputWords,
-        answer: payload.answer,
-      };
+    case ACTIONS.INPUT_CHAR:
+      return payload;
     case ACTIONS.CLICK:
       console.log(payload.clickMessage);
       return state;

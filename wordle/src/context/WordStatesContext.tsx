@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import WordList from "../assets/wordlist.json";
 import WordleReducer, {
   ACTIONS,
@@ -10,17 +10,42 @@ const WordStatesContext: any = createContext(initialState);
 export const WordStatesProvider = (props: any) => {
   const [state, dispatch] = useReducer(WordleReducer, initialState);
 
-  const changeInput = (inputContent: any) => {
-    const word = inputContent;
-    const newInputWord = word;
-
-    dispatch({
-      type: ACTIONS.CHANGE_INPUT,
-      payload: {
-        inputWords: newInputWord,
-      },
-    });
+  const addCharToState = (char: any) => {
+    state.userInput = state.userInput + char;
+    const newState = {
+      ...state,
+      inputWords: [...state.inputWords],
+    };
+    newState.inputWords[0] = state.userInput.toUpperCase();
+    return newState;
   };
+
+  useEffect(() => {
+    const handleKeyPress = (e: any) => {
+      console.log(e.key);
+
+      if (e.key === "Enter") {
+        console.log("You press enter");
+      }
+
+      if (e.key === "Backspace") {
+        console.log("You press backspace");
+      }
+
+      if (/^[A-Za-z]$/.test(e.key)) {
+        dispatch({
+          type: ACTIONS.INPUT_CHAR,
+          payload: addCharToState(e.key),
+        });
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   const handleClick = (e: any) => {
     e.preventDefault();
@@ -40,25 +65,20 @@ export const WordStatesProvider = (props: any) => {
       payload: {
         wordState: {
           answer: newAnswer,
-          inputWords: [
-            "Billy".toUpperCase(),
-            "Grace".toUpperCase(),
-            "Trail".toUpperCase(),
-            "GRAIL".toUpperCase(),
-            newAnswer.toUpperCase(),
-            "".toUpperCase(),
-          ],
+          userInput: "",
+          completeRows: [...Array(6).fill(false)],
+          inputWords: [...Array(6).fill("")],
         },
       },
     });
   };
 
   const value = {
-    changeInput,
     handleClick,
     getRandomAnswer,
     inputWords: state.inputWords,
     answer: state.answer,
+    completeRows: state.completeRows,
   };
 
   return (

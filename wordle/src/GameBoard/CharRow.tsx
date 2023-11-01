@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import WordStatesContext from "../context/WordStatesContext.jsx";
+
 const gridtemplate =
   "flex items-center justify-center rounded-md border-2 border-solid font-sans text-4xl font-semibold text-white";
 
@@ -10,17 +13,21 @@ const charStates = {
 };
 
 interface CharRowProps {
-  word: string;
+  inputWords: string[];
   answer: string;
+  completeRows: boolean[];
 }
 
-const CharRow = ({ word, answer }: CharRowProps) => {
+const CharRow = ({ rowIndex }: { rowIndex: number }) => {
   const rowArray = [];
   const answerArray: string[] = [];
 
+  const { inputWords, answer, completeRows }: CharRowProps =
+    useContext(WordStatesContext);
+
   for (let i = 0; i < 5; i++) {
-    if (i < word.length) {
-      rowArray.push(word[i]);
+    if (i < inputWords[rowIndex].length) {
+      rowArray.push(inputWords[rowIndex][i]);
     } else {
       rowArray.push(" ");
     }
@@ -32,7 +39,7 @@ const CharRow = ({ word, answer }: CharRowProps) => {
     let isEmpty = false;
     let isIncomplete = false;
 
-    if (arr.includes(" ")) {
+    if (arr.includes(" ") || !completeRows[rowIndex]) {
       isIncomplete = true;
       state = charStates.inserting;
     }
