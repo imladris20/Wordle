@@ -5,7 +5,6 @@ const answer = WordList[randomIndex].toUpperCase();
 
 export const initialState = {
   answer: answer,
-  userInput: "",
   completeRows: [...Array(6).fill(false)],
   inputWords: [...Array(6).fill("")],
   currentRow: 0,
@@ -23,17 +22,17 @@ export const ACTIONS = {
 const WordleReducer = (state: any, action: any) => {
   const { type, payload } = action;
 
-  const { userInput, inputWords, currentRow, completeRows, isGameOver } = state;
+  const { inputWords, currentRow, completeRows, isGameOver } = state;
 
   switch (type) {
     case ACTIONS.INPUT_CHAR:
-      if (userInput.length < 5 && currentRow < 6 && !isGameOver) {
+      if (inputWords[currentRow].length < 5 && currentRow < 6 && !isGameOver) {
         const newInputWords = [...inputWords];
-        const newUserInput = userInput + payload.char.toUpperCase();
+        const newUserInput =
+          inputWords[currentRow] + payload.char.toUpperCase();
         newInputWords[currentRow] = newUserInput;
         return {
           ...state,
-          userInput: newUserInput,
           inputWords: newInputWords,
         };
       } else {
@@ -54,7 +53,6 @@ const WordleReducer = (state: any, action: any) => {
             ...state,
             completeRows: newCompleteRows,
             currentRow: newCurrentRow,
-            userInput: "",
             isGameOver: inputWords[currentRow] === answer,
           };
         }
@@ -62,11 +60,10 @@ const WordleReducer = (state: any, action: any) => {
       return state;
     case ACTIONS.DELETE_CHAR:
       const newInputWords = [...inputWords];
-      const newUserInput = userInput.slice(0, -1);
+      const newUserInput = inputWords[currentRow].slice(0, -1);
       newInputWords[currentRow] = newUserInput;
       return {
         ...state,
-        userInput: newUserInput,
         inputWords: newInputWords,
       };
     default:

@@ -28,7 +28,7 @@ const GameBoard = () => {
           })}
         </div>
       </main>
-      <div className="mx-auto my-10 flex w-[400px] flex-row items-center justify-center gap-20 text-center">
+      <div className="bg-dark mx-auto mb-10 flex h-[150px] w-full flex-row items-center justify-center gap-20 text-center">
         <button
           className="h-10 w-40 rounded-md bg-gray-300 p-1 pl-3 text-left text-xs"
           onClick={handleShowAnswer}
