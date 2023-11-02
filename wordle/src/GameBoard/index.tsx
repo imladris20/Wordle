@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Toaster } from "react-hot-toast";
 import WordStatesContext from "../context/WordStatesContext.jsx";
 import AnswerButton from "./AnswerButton";
 import CharRow from "./CharRow";
@@ -25,6 +26,7 @@ const GameBoard = () => {
         </div>
       </main>
       <AnswerButton />
+      <Toaster />
     </>
   );
 };

@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import WordList from "../assets/wordlist.json";
 
 const randomIndex = Math.floor(Math.random() * WordList.length);
@@ -53,6 +54,14 @@ const WordleReducer = (state: any, action: any) => {
           newCompleteRows[currentRow] = true;
           const newCurrentRow = currentRow + 1;
           const inputBeforeSubmit = inputWords[currentRow];
+          if (inputBeforeSubmit === answer) {
+            toast("那你很厲害唷！", { icon: "👏", duration: 1000 });
+            setTimeout(() => {
+              toast("去試試看下一題吧！", { icon: "💪", duration: 1000 });
+            }, 1000);
+          } else {
+            toast("再試試", { icon: "🙌", duration: 1500 });
+          }
           return {
             ...state,
             completeRows: newCompleteRows,
@@ -60,6 +69,9 @@ const WordleReducer = (state: any, action: any) => {
             isGameOver: inputBeforeSubmit === answer,
           };
         }
+      }
+      if (!isGameOver) {
+        toast.error("沒打滿一行喔!", { duration: 1500 });
       }
       return state;
     case ACTIONS.DELETE_CHAR:
