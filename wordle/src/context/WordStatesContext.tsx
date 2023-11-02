@@ -10,6 +10,7 @@ const WordStatesContext: any = createContext(initialState);
 export const WordStatesProvider = (props: any) => {
   const [state, dispatch] = useReducer(WordleReducer, initialState);
   const buttonRef: any = useRef();
+
   useEffect(() => {
     const handleKeyPress = (e: any) => {
       buttonRef.current.blur();
