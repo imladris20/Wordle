@@ -17,7 +17,7 @@ const GameBoard = () => {
   return (
     <>
       <Description />
-      <main className="mx-auto flex h-full w-full flex-row justify-center pt-8 text-center">
+      <main className="mx-auto flex w-full flex-row justify-center pt-8 text-center">
         <div className="boardGridContainer grid h-[480px] w-[400px] grid-cols-5 grid-rows-6 gap-3">
           {inputWords.map((_, index) => {
             return <CharRow rowIndex={index} key={index} />;
