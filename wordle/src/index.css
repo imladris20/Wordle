@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Gen Jyuu Gothic";
+  src: url("/fonts/GenJyuuGothic-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Gen Jyuu Gothic";
+  src: url("/fonts/GenJyuuGothic-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+}

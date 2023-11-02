@@ -56,7 +56,7 @@ const WordleReducer = (state: any, action: any) => {
             isGameOver: inputWords[currentRow] === answer,
           };
         }
-      }
+      }a
       return state;
     case ACTIONS.DELETE_CHAR:
       const newInputWords = [...inputWords];

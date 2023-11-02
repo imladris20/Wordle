@@ -3,7 +3,7 @@ import Header from "./Headers";
 
 function App() {
   return (
-    <div className="bg-dark h-screen">
+    <div className="h-full bg-dark">
       <Header></Header>
       <GameBoard></GameBoard>
     </div>

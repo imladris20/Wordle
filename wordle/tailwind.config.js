@@ -20,6 +20,9 @@ export default {
         inserting: "#565758",
         dark: "#121213",
       },
+      fontFamily: {
+        custom: ["Gen Jyuu Gothic", "sans"],
+      },
     },
   },
   plugins: [],
