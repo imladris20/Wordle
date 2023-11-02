@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useRef } from "react";
 import WordList from "../assets/wordlist.json";
 import WordleReducer, {
   ACTIONS,
@@ -9,9 +9,10 @@ const WordStatesContext: any = createContext(initialState);
 
 export const WordStatesProvider = (props: any) => {
   const [state, dispatch] = useReducer(WordleReducer, initialState);
-
+  const buttonRef: any = useRef();
   useEffect(() => {
     const handleKeyPress = (e: any) => {
+      buttonRef.current.blur();
       if (e.key === "Enter") {
         dispatch({
           type: ACTIONS.SUBMIT_ROW,
@@ -55,6 +56,7 @@ export const WordStatesProvider = (props: any) => {
     inputWords: state.inputWords,
     answer: state.answer,
     completeRows: state.completeRows,
+    buttonRef: buttonRef,
   };
 
   return (

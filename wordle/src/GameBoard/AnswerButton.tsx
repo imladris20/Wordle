@@ -7,10 +7,11 @@ interface GameBoardProps {
   changeInput: any;
   handleClick: any;
   getRandomAnswer: any;
+  buttonRef: any;
 }
 
 const AnswerButton = () => {
-  const { getRandomAnswer, answer }: GameBoardProps =
+  const { getRandomAnswer, answer, buttonRef }: GameBoardProps =
     useContext(WordStatesContext);
 
   const [isAnswerShow, setIsAnswerShow] = useState(false);
@@ -24,12 +25,14 @@ const AnswerButton = () => {
       <button
         className="h-10 w-40 rounded-md bg-gray-300 p-1 font-custom text-sm font-bold"
         onClick={handleShowAnswer}
+        ref={buttonRef}
       >
         {!isAnswerShow ? "點我看答案！" : `答案: ${answer}`}
       </button>
       <button
         className="h-10 w-40 rounded-md bg-gray-300 p-1 font-custom text-sm font-bold"
         onClick={getRandomAnswer}
+        ref={buttonRef}
       >
         下一個挑戰！
       </button>
