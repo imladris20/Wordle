@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "wordle-polien-p2",
+    "site": "wordle-polien-p3",
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [

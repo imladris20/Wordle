@@ -1,10 +1,13 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
+import { WordStatesProvider } from "./context/WordStatesContext.tsx";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <WordStatesProvider>
     <App />
-  </React.StrictMode>,
+  </WordStatesProvider>,
+  // </React.StrictMode>,
 );
