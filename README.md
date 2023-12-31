@@ -1,27 +1,73 @@
-# React + TypeScript + Vite
+<div align="center">
+  <a href="https://wordle-polien-p5.web.app/" style="margin-bottom:20px; display:block;">
+    <img src="https://imgur.com/ojXHYYy.png" alt="Logo" width="100px">
+  </a>
+  <br>
+  <img src="https://img.shields.io/badge/React-18.2.0-blue"></img>
+  <img src="https://img.shields.io/badge/vite-4.4.5-yellow"></img>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+</div>
 
-Currently, two official plugins are available:
+# Wordle (Mockup)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### This [website](https://wordle-polien-p5.web.app/) is a replication of the well-known web-based word game, Wordle, on [The New York Times](https://www.nytimes.com/games/wordle/index.html).
 
-## Expanding the ESLint configuration
+#### User's target is to guess the correct 5-character word in 6 chances.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#### After each submission of answer (one row), system would hint if the position correct or not by marking background colors.
 
-- Configure the top-level `parserOptions` property like this:
+#### Below are the summary of developing
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- Developed with TypeScript to enhance reliability and maintainability by providing static typing
+- Applied useReducer hook to empowers robust state management
+- Utilized useContext hook to provide global states and prevent props drilling
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Built with
+
+<div>
+  <img src="https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black" />
+  <img src="https://img.shields.io/badge/Typescript-3178c6.svg?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/useReducer-593D88?style=for-the-badge&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white" />
+  <img src="https://img.shields.io/badge/Firebase-lightgray.svg?style=for-the-badge&logo=Firebase&logoColor=FFCC29" />
+  <img src="https://img.shields.io/badge/Vite-FFDB33.svg?style=for-the-badge&logo=vite" />
+</div>
+
+<br>
+
+**Base**
+
+- React App
+- TypeScript
+- useReducer Hook
+- Firebase
+- Tailwind
+- Vite
+
+**Libraries**
+
+- React Hot Toast
+- Tailwind CSS Animated
+
+## Demo
+
+1. Player could directly press key or backspance whenever they want before submit one row
+   <br>
+   <img src="https://imgur.com/gjaw8wu.gif" />
+
+<br>
+
+2. System will show the judgement of the answer after each submission
+   <br>
+   <img src="https://imgur.com/mLaVpWX.gif" />
+
+<br>
+
+3. Player could check the answer and change new question as they want
+   <br>
+   <img src="https://imgur.com/YpHeHUl.gif" />
+
+## Contact
+
+<a href="https://www.linkedin.com/in/polienlin/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2.svg?style=for-the-badge&logo=LinkedIn&logoColor=white" /></a>
+<a href="mailto:polien.joe.lin@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335.svg?style=for-the-badge&logo=Gmail&logoColor=white" /></a>
