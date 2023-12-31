@@ -18,9 +18,9 @@
 
 #### Below are the summary of developing
 
-- Developed with TypeScript to enhance reliability and maintainability by providing static typing
-- Applied useReducer hook to empowers robust state management
-- Utilized useContext hook to provide global states and prevent props drilling
+- Developed with **TypeScript** to enhance reliability and maintainability by providing static typing
+- Applied **useReducer** hook to empowers robust state management
+- Utilized **useContext** hook to provide global states and prevent props drilling
 
 ## Built with
 
